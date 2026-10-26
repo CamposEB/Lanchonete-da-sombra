@@ -1,7 +1,6 @@
-/* melhorias.css — carregue DEPOIS de style.css:
-   <link rel="stylesheet" href="css/melhorias.css"> */
+/* melhorias.css — carregue DEPOIS de style.css */
 
-/* ---------- HERO: foto visível à direita, texto legível à esquerda ---------- */
+/* ---------- HERO ---------- */
 .hero{
   --hero-overlay:
     linear-gradient(90deg,rgba(14,32,14,.97) 0%,rgba(14,32,14,.93) 48%,rgba(14,32,14,.45) 74%,rgba(14,32,14,.15) 100%),
@@ -12,25 +11,34 @@
   padding:clamp(7rem,12vw,9rem) 0 clamp(5rem,8vw,6.5rem);
 }
 .hero__sombra{display:none}
-.hero__grade{width:min(1140px,100% - 2rem);margin-inline:auto;gap:2.5rem}
+.hero__grade{width:min(1140px,100% - 2rem);margin-inline:auto;gap:2.5rem;min-width:0}
+.hero__texto{min-width:0;overflow-wrap:break-word}
 .hero__texto h1{font-size:clamp(2.1rem,4.6vw + .5rem,3.6rem);max-width:15em}
 .hero__texto p{color:#f3ecdc;font-size:1.12rem}
-@media (max-width:767px){
-  .hero{background-image:linear-gradient(rgba(14,32,14,.9),rgba(14,32,14,.88)),var(--hero-img)}
+
+@media (max-width:899px){
+  .hero{
+    background-image:linear-gradient(rgba(14,32,14,.9),rgba(14,32,14,.88)),var(--hero-img);
+    background-position:center;
+    padding:clamp(5.5rem,10vw,7rem) 0 clamp(4rem,7vw,5.5rem);
+  }
+  .hero__grade{grid-template-columns:1fr;justify-items:stretch}
+  .hero__card{justify-self:stretch;max-width:100%;margin-inline:auto}
+  .hero__texto h1{max-width:100%}
 }
 @media (min-width:900px){.hero__grade{grid-template-columns:1.35fr 1fr}}
 
-/* Cartão de informações (substitui a logo redonda repetida) */
+/* Cartão de informações */
 .hero__card{
   background:rgba(255,248,236,.97);color:var(--carvao);
   border-radius:var(--raio);border-top:6px solid var(--laranja);
   padding:1.6rem 1.6rem 1.4rem;box-shadow:0 18px 50px rgba(0,0,0,.45);
-  max-width:420px;width:100%;justify-self:end;
+  max-width:420px;width:100%;justify-self:end;min-width:0;
 }
 .hero__card h2{font-size:1.25rem;margin:0 0 1rem;color:var(--verde-escuro)}
 .hero__card dl{margin:0 0 1.2rem;display:grid;gap:.9rem}
 .hero__card dt{font:800 .75rem var(--f-texto);text-transform:uppercase;letter-spacing:.08em;color:var(--marrom)}
-.hero__card dd{margin:.1rem 0 0;font-weight:800;font-size:1.05rem}
+.hero__card dd{margin:.1rem 0 0;font-weight:800;font-size:1.05rem;overflow-wrap:anywhere}
 .hero__card dd small{display:block;font-weight:600;color:#6a5a40;font-size:.88rem}
 .hero__card .btn{width:100%}
 
@@ -39,13 +47,13 @@
 .status.aberto i{animation:piscar 2s infinite}
 @keyframes piscar{50%{box-shadow:0 0 0 7px rgba(75,224,75,0)}}
 
-/* ---------- FAIXA de destaques (2 linhas: título + detalhe) ---------- */
+/* ---------- FAIXA ---------- */
 .faixa__lista li{text-transform:none;letter-spacing:0;font-size:.95rem;line-height:1.25}
 .faixa__lista li span{display:block}
 .faixa__lista li b{display:block;font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem}
 .faixa__lista li small{display:block;font-weight:700;color:#4a2f00;font-size:.88rem;margin-top:.1rem}
 
-/* ---------- Títulos com detalhe, seções mais arejadas ---------- */
+/* ---------- Títulos e seções ---------- */
 .secao h2{position:relative;padding-bottom:.55em}
 .secao h2::after{content:"";position:absolute;left:0;bottom:0;width:64px;height:5px;border-radius:5px;background:linear-gradient(90deg,var(--laranja),var(--vermelho))}
 .secao--verde h2::after{background:var(--laranja)}
