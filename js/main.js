@@ -1,23 +1,18 @@
 /* ==========================================================
    Restaurante e Lanchonete da Sombra – main.js
-   JavaScript puro, sem dependências.
    ========================================================== */
 "use strict";
 
-/* ---------- CONFIGURAÇÃO ---------- */
 const WHATSAPP = "5521995320667";
 const MAPS_URL = "https://maps.app.goo.gl/x92qv9onvm4SXE5z7";
 const REVIEWS_API_URL = "";
 const CART_KEY = "sombra_carrinho";
 
-/* ---------- CARDÁPIO ---------- */
 const CARDAPIO = [
   { id: "fritos", titulo: "Salgados fritos", itens: [
-    ["Pastel", 9,
-      "Carne seca, carne moída, queijo, camarão, frango c/ catupiry ou queijo minas c/ presunto e orégano",
+    ["Pastel", 9, "Carne seca, carne moída, queijo, camarão, frango c/ catupiry ou queijo minas c/ presunto e orégano",
       ["Carne seca", "Carne moída", "Queijo", "Camarão", "Frango com catupiry", "Queijo minas com presunto e orégano"]],
-    ["Bolinho de aipim", 9,
-      "Carne seca, camarão c/ catupiry, carne moída ou frango c/ catupiry",
+    ["Bolinho de aipim", 9, "Carne seca, camarão c/ catupiry, carne moída ou frango c/ catupiry",
       ["Carne seca", "Camarão com catupiry", "Carne moída", "Frango com catupiry"]],
     ["Kibe", 9], ["Risole", 9], ["Coxinha", 9], ["Enroladinho de salsicha", 9],
     ["Espetinho de frango", 10], ["Bolinho de bacalhau", 10]]},
@@ -60,12 +55,9 @@ const CARDAPIO = [
     ["Água sem gás 510ml", 4], ["Água sem gás 1,5L", 8], ["Água com gás 510ml", 5],
     ["Água com gás 1,26L", 10], ["Água com gás São Lourenço 300ml", 5]]},
 
-  { id: "sucos", titulo: "Sucos naturais",
-    nota: "Escolha o sabor ao adicionar: limão, melão, laranja, morango, abacaxi ou acerola.",
-    saboresBase: ["Limão", "Melão", "Laranja", "Morango", "Abacaxi", "Acerola"],
-    prefixoNome: "Suco",
-    itens: [
-      ["Caneca 350ml", 10], ["Jarra pequena", 18], ["Jarra média", 26], ["Jarra grande", 31]]},
+  { id: "sucos", titulo: "Sucos naturais", nota: "Escolha o sabor ao adicionar: limão, melão, laranja, morango, abacaxi ou acerola.",
+    saboresBase: ["Limão", "Melão", "Laranja", "Morango", "Abacaxi", "Acerola"], prefixoNome: "Suco",
+    itens: [["Caneca 350ml", 10], ["Jarra pequena", 18], ["Jarra média", 26], ["Jarra grande", 31]]},
 
   { id: "cervejas", titulo: "Cervejas", sub: [
     ["Lata", [["Heineken 473ml", 12], ["Brahma 473ml", 9], ["Antarctica 473ml", 9], ["Caracu 350ml", 9]]],
@@ -78,16 +70,17 @@ const CARDAPIO = [
     ["Caipirinha", 15], ["Caipivodka", 18], ["Vinho taça", 10], ["Vinho caneca", 13]]}
 ];
 
+// TODOS OS PRATOS AGORA TÊM O SELO "ALMOÇO"
 const PRATOS = [
-  { nome: "Feijoada completa", inclui: "Arroz branco, farofa, molho à campanha, banana frita e torresmo", precos: [["2 pessoas", 89], ["4 pessoas", 180]] },
-  { nome: "Galinha caipira com aipim (ou quiabo)", inclui: "Arroz branco, feijão, macarrão, farofa e salada", precos: [["2 pessoas", 79], ["4 pessoas", 150]] },
-  { nome: "Carne seca à mineira", inclui: "Arroz branco, tutu, couve com torresmo e ovo frito", precos: [["2 pessoas", 65]] },
-  { nome: "Carré à mineira", inclui: "Arroz branco, carré grelhado, ovo frito e couve com torresmo", precos: [["2 pessoas", 65]] },
-  { nome: "Churrasco misto", inclui: "Arroz branco, contrafilé, frango, carré, carne seca, linguiça, batata frita, farofa e molho à campanha", precos: [["3 pessoas", 98]] },
-  { nome: "Churrasco à gaúcho", inclui: "Arroz branco, contrafilé, linguiça, molho à campanha, farofa e batata frita", precos: [["2 pessoas", 73]] },
-  { nome: "Filé com fritas", inclui: "Arroz branco, filé, molho à campanha, farofa e batata frita", precos: [["2 pessoas", 73]] },
-  { nome: "Frango à cubana", inclui: "Arroz branco, bacon, batata frita e banana frita", precos: [["2 pessoas", 78]] },
-  { nome: "Frango grelhado", inclui: "Arroz branco e salada, ou arroz branco e batata frita", precos: [["2 pessoas", 78]] }
+  { nome: "Feijoada completa", badge: "Almoço", inclui: "Arroz branco, farofa, molho à campanha, banana frita e torresmo", precos: [["2 pessoas", 89], ["4 pessoas", 180]] },
+  { nome: "Galinha caipira com aipim (ou quiabo)", badge: "Almoço", inclui: "Arroz branco, feijão, macarrão, farofa e salada", precos: [["2 pessoas", 79], ["4 pessoas", 150]] },
+  { nome: "Carne seca à mineira", badge: "Almoço", inclui: "Arroz branco, tutu, couve com torresmo e ovo frito", precos: [["2 pessoas", 65]] },
+  { nome: "Carré à mineira", badge: "Almoço", inclui: "Arroz branco, carré grelhado, ovo frito e couve com torresmo", precos: [["2 pessoas", 65]] },
+  { nome: "Churrasco misto", badge: "Almoço", inclui: "Arroz branco, contrafilé, frango, carré, carne seca, linguiça, batata frita, farofa e molho à campanha", precos: [["3 pessoas", 98]] },
+  { nome: "Churrasco à gaúcho", badge: "Almoço", inclui: "Arroz branco, contrafilé, linguiça, molho à campanha, farofa e batata frita", precos: [["2 pessoas", 73]] },
+  { nome: "Filé com fritas", badge: "Almoço", inclui: "Arroz branco, filé, molho à campanha, farofa e batata frita", precos: [["2 pessoas", 73]] },
+  { nome: "Frango à cubana", badge: "Almoço", inclui: "Arroz branco, bacon, batata frita e banana frita", precos: [["2 pessoas", 78]] },
+  { nome: "Frango grelhado", badge: "Almoço", inclui: "Arroz branco e salada, ou arroz branco e batata frita", precos: [["2 pessoas", 78]] }
 ];
 
 /* ---------- UTILITÁRIOS ---------- */
@@ -98,11 +91,9 @@ const semAcento = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowe
 const wa = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 const esc = t => String(t).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-/* ---------- LINKS DO WHATSAPP (data-wa) ---------- */
 $$("[data-wa]").forEach(a => { a.href = wa(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
 
-/* ---------- STATUS ABERTO/FECHADO (06:00–01:00, America/Sao_Paulo) ----------
-   Fechado apenas entre 01:00 e 06:00. */
+/* ---------- STATUS ABERTO/FECHADO (06:00–01:00, America/Sao_Paulo) ---------- */
 function atualizarStatus() {
   const el = $("#status");
   if (!el) return;
@@ -113,28 +104,21 @@ function atualizarStatus() {
     }).formatToParts(new Date());
     const min = (+p.find(x => x.type === "hour").value % 24) * 60 + +p.find(x => x.type === "minute").value;
 
-    const ABRE = 6 * 60;               // 06:00
-    const FECHA = 25 * 60;             // 01:00 do dia seguinte
+    const ABRE = 6 * 60;
+    const FECHA = 25 * 60;
     const aberto = min >= ABRE || min < 60;
     el.className = "status " + (aberto ? "aberto" : "fechado");
 
     if (aberto) {
       const falta = min >= ABRE ? FECHA - min : 60 - min;
-      label.textContent = falta <= 60
-        ? `Aberto · fecha em ${falta} min`
-        : "Aberto agora · fecha às 01:00";
+      label.textContent = falta <= 60 ? `Aberto · fecha em ${falta} min` : "Aberto agora · fecha às 01:00";
     } else {
       const falta = ABRE - min;
-      label.textContent = falta <= 60
-        ? `Fechado · abre em ${falta} min`
-        : "Fechado agora · abre às 06:00";
+      label.textContent = falta <= 60 ? `Fechado · abre em ${falta} min` : "Fechado agora · abre às 06:00";
     }
-  } catch (e) {
-    label.textContent = "Todos os dias · 06:00 às 01:00";
-  }
+  } catch (e) { label.textContent = "Todos os dias · 06:00 às 01:00"; }
 }
-atualizarStatus();
-setInterval(atualizarStatus, 60000);
+atualizarStatus(); setInterval(atualizarStatus, 60000);
 
 /* ---------- MENU, TOPO, ÂNCORAS ---------- */
 const burger = $("#burger"), menu = $("#menu");
@@ -153,20 +137,16 @@ addEventListener("scroll", () => {
 voltar.addEventListener("click", () => scrollTo({ top: 0 }));
 $("#ano").textContent = new Date().getFullYear();
 
-/* Link ativo no menu */
 const links = $$(".menu a[href^='#']:not(.btn)");
 const obsMenu = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) links.forEach(l => l.classList.toggle("ativo", l.getAttribute("href") === "#" + e.target.id));
 }), { rootMargin: "-40% 0px -55% 0px" });
 $$("main section[id]").forEach(s => obsMenu.observe(s));
 
-/* Entrada ao rolar */
 const obsRev = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("vis"); obsRev.unobserve(e.target); } }), { threshold: .08 });
 $$(".secao .container").forEach(c => { c.classList.add("rev"); obsRev.observe(c); });
 
-/* ============================================================
-   CARRINHO
-   ============================================================ */
+/* ============================================================ CARRINHO ============================================================ */
 let cart = [];
 
 function loadCart() {
@@ -179,8 +159,7 @@ function loadCart() {
 }
 function saveCart() {
   try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {}
-  renderCart();
-  atualizarBotaoCarrinho();
+  renderCart(); atualizarBotaoCarrinho();
 }
 
 function addToCart({ key, nome, variacao = null, preco, qtd = 1 }) {
@@ -198,11 +177,7 @@ function alterarQtd(key, delta) {
   saveCart();
 }
 function removerItem(key) { cart = cart.filter(c => c.key !== key); saveCart(); }
-function limparCarrinho() {
-  if (!cart.length) return;
-  if (!confirm("Limpar todo o pedido?")) return;
-  cart = []; saveCart();
-}
+function limparCarrinho() { if (!cart.length || !confirm("Limpar todo o pedido?")) return; cart = []; saveCart(); }
 const totalCarrinho = () => cart.reduce((s, c) => s + c.preco * c.qtd, 0);
 const totalItens = () => cart.reduce((s, c) => s + c.qtd, 0);
 
@@ -221,24 +196,19 @@ function mensagemPedido() {
 }
 
 function renderCart() {
-  const el = $("#carrinho-lista");
-  const btnEnviar = $("#carrinho-enviar");
-  const totalEl = $("#carrinho-total");
+  const el = $("#carrinho-lista"), btnEnviar = $("#carrinho-enviar"), totalEl = $("#carrinho-total");
   if (!el) return;
 
   if (!cart.length) {
     el.innerHTML = `<p class="carrinho__vazio">Seu pedido está vazio.<br>Toque no <b>+</b> dos itens do cardápio para adicionar.</p>`;
-    totalEl.textContent = "R$ 0,00";
-    btnEnviar.setAttribute("aria-disabled", "true");
-    btnEnviar.removeAttribute("href");
+    totalEl.textContent = "R$ 0,00"; btnEnviar.setAttribute("aria-disabled", "true"); btnEnviar.removeAttribute("href");
     return;
   }
 
   el.innerHTML = cart.map(c => `
     <div class="carrinho__item">
       <div class="carrinho__item-info">
-        <b>${esc(c.nome)}</b>
-        ${c.variacao ? `<small>(${esc(c.variacao)})</small>` : ""}
+        <b>${esc(c.nome)}</b>${c.variacao ? `<small>(${esc(c.variacao)})</small>` : ""}
         <span>${reais(c.preco)} cada</span>
       </div>
       <div class="carrinho__item-qtd">
@@ -252,103 +222,65 @@ function renderCart() {
   `).join("");
 
   totalEl.textContent = reais(totalCarrinho());
-  btnEnviar.href = wa(mensagemPedido());
-  btnEnviar.removeAttribute("aria-disabled");
+  btnEnviar.href = wa(mensagemPedido()); btnEnviar.removeAttribute("aria-disabled");
 }
 
 function atualizarBotaoCarrinho() {
-  const btn = $("#carrinho-btn"), badge = $("#carrinho-badge");
-  const qtd = totalItens();
+  const btn = $("#carrinho-btn"), badge = $("#carrinho-badge"), qtd = totalItens();
   if (!btn || !badge) return;
-  if (qtd > 0) { btn.hidden = false; badge.textContent = qtd; }
-  else { btn.hidden = true; }
+  if (qtd > 0) { btn.hidden = false; badge.textContent = qtd; } else { btn.hidden = true; }
 }
 
-/* Atualiza o link do WhatsApp quando as observações mudam */
-$("#carrinho-obs")?.addEventListener("input", () => {
-  if (cart.length) $("#carrinho-enviar").href = wa(mensagemPedido());
-});
+$("#carrinho-obs")?.addEventListener("input", () => { if (cart.length) $("#carrinho-enviar").href = wa(mensagemPedido()); });
 
-/* Delegação no carrinho */
 $("#carrinho-lista").addEventListener("click", e => {
-  const btn = e.target.closest("[data-acao]");
-  if (!btn) return;
+  const btn = e.target.closest("[data-acao]"); if (!btn) return;
   const key = btn.dataset.key;
   if (btn.dataset.acao === "mais") alterarQtd(key, 1);
   else if (btn.dataset.acao === "menos") alterarQtd(key, -1);
   else if (btn.dataset.acao === "remover") removerItem(key);
 });
 
-/* Abrir/fechar carrinho */
 function abrirCarrinho() {
-  $("#carrinho").hidden = false;
-  $("#carrinho-overlay").hidden = false;
-  requestAnimationFrame(() => {
-    $("#carrinho").classList.add("aberto");
-    $("#carrinho-overlay").classList.add("aberto");
-  });
-  document.body.style.overflow = "hidden";
-  $("#carrinho-fechar").focus();
+  $("#carrinho").hidden = false; $("#carrinho-overlay").hidden = false;
+  requestAnimationFrame(() => { $("#carrinho").classList.add("aberto"); $("#carrinho-overlay").classList.add("aberto"); });
+  document.body.style.overflow = "hidden"; $("#carrinho-fechar").focus();
 }
 function fecharCarrinho() {
-  $("#carrinho").classList.remove("aberto");
-  $("#carrinho-overlay").classList.remove("aberto");
+  $("#carrinho").classList.remove("aberto"); $("#carrinho-overlay").classList.remove("aberto");
   document.body.style.overflow = "";
-  setTimeout(() => {
-    $("#carrinho").hidden = true;
-    $("#carrinho-overlay").hidden = true;
-  }, 300);
+  setTimeout(() => { $("#carrinho").hidden = true; $("#carrinho-overlay").hidden = true; }, 300);
 }
 $("#carrinho-btn").addEventListener("click", abrirCarrinho);
 $("#carrinho-fechar").addEventListener("click", fecharCarrinho);
 $("#carrinho-overlay").addEventListener("click", fecharCarrinho);
 $("#carrinho-limpar").addEventListener("click", limparCarrinho);
 
-/* ============================================================
-   MODAL DE OPÇÕES (sabores / tamanhos)
-   ============================================================ */
+/* ============================================================ MODAL DE OPÇÕES ============================================================ */
 let modalOpcoesAtual = null, modalCallback = null, modalFocoAnterior = null;
 
 function abrirModalOpcoes({ titulo, subtitle, opcoes, onEscolher }) {
-  modalOpcoesAtual = opcoes;
-  modalCallback = onEscolher;
-  modalFocoAnterior = document.activeElement;
-
-  $("#modal-opcoes-titulo").textContent = titulo;
-  $("#modal-opcoes-sub").textContent = subtitle || "";
+  modalOpcoesAtual = opcoes; modalCallback = onEscolher; modalFocoAnterior = document.activeElement;
+  $("#modal-opcoes-titulo").textContent = titulo; $("#modal-opcoes-sub").textContent = subtitle || "";
   $("#modal-opcoes-lista").innerHTML = opcoes.map((o, i) => `
     <button class="modal-opcoes__item" type="button" data-i="${i}">
-      <span>${esc(o.label)}</span>
-      ${o.preco != null ? `<b>${reais(o.preco)}</b>` : ""}
+      <span>${esc(o.label)}</span>${o.preco != null ? `<b>${reais(o.preco)}</b>` : ""}
     </button>
   `).join("");
-
-  $("#modal-opcoes").hidden = false;
-  requestAnimationFrame(() => $("#modal-opcoes").classList.add("aberto"));
+  $("#modal-opcoes").hidden = false; requestAnimationFrame(() => $("#modal-opcoes").classList.add("aberto"));
   document.body.style.overflow = "hidden";
-  const primeiro = $("#modal-opcoes-lista button");
-  if (primeiro) primeiro.focus();
+  const primeiro = $("#modal-opcoes-lista button"); if (primeiro) primeiro.focus();
 }
 function fecharModalOpcoes() {
-  $("#modal-opcoes").classList.remove("aberto");
-  document.body.style.overflow = $("#carrinho").hidden ? "" : "hidden";
-  setTimeout(() => {
-    $("#modal-opcoes").hidden = true;
-    if (modalFocoAnterior) modalFocoAnterior.focus();
-    modalOpcoesAtual = null; modalCallback = null; modalFocoAnterior = null;
-  }, 200);
+  $("#modal-opcoes").classList.remove("aberto"); document.body.style.overflow = $("#carrinho").hidden ? "" : "hidden";
+  setTimeout(() => { $("#modal-opcoes").hidden = true; if (modalFocoAnterior) modalFocoAnterior.focus(); modalOpcoesAtual = null; modalCallback = null; modalFocoAnterior = null; }, 200);
 }
 $("#modal-opcoes-lista").addEventListener("click", e => {
-  const btn = e.target.closest(".modal-opcoes__item");
-  if (!btn || !modalOpcoesAtual) return;
-  const opt = modalOpcoesAtual[+btn.dataset.i];
-  if (modalCallback) modalCallback(opt);
-  fecharModalOpcoes();
+  const btn = e.target.closest(".modal-opcoes__item"); if (!btn || !modalOpcoesAtual) return;
+  const opt = modalOpcoesAtual[+btn.dataset.i]; if (modalCallback) modalCallback(opt); fecharModalOpcoes();
 });
 $("#modal-opcoes-fechar").addEventListener("click", fecharModalOpcoes);
-$("#modal-opcoes").addEventListener("click", e => {
-  if (e.target.id === "modal-opcoes") fecharModalOpcoes();
-});
+$("#modal-opcoes").addEventListener("click", e => { if (e.target.id === "modal-opcoes") fecharModalOpcoes(); });
 addEventListener("keydown", e => {
   if (e.key === "Escape") {
     if (!$("#modal-opcoes").hidden) fecharModalOpcoes();
@@ -356,9 +288,7 @@ addEventListener("keydown", e => {
   }
 });
 
-/* ============================================================
-   RENDER DO CARDÁPIO
-   ============================================================ */
+/* ============================================================ RENDER DO CARDÁPIO ============================================================ */
 const abas = $("#abas"), lista = $("#cardapio-lista"), busca = $("#busca");
 let categoria = "todos";
 
@@ -372,32 +302,23 @@ function linha(cat, item, subTitulo) {
   const temOpcoes = (sab && sab.length) || (cat.saboresBase && cat.saboresBase.length);
   const label = temOpcoes ? `Adicionar ${n} — escolher opções` : `Adicionar ${n} ao pedido`;
   return `<div class="item">
-    <span class="item__nome">${esc(n)}</span>
-    <span class="item__pontos"></span>
-    <span class="item__preco">${reais(p)}</span>
-    <button class="item__add${temOpcoes ? " item__add--opcoes" : ""}"
-      type="button"
-      data-cat="${cat.id}"
-      data-item="${esc(n)}"
-      ${subTitulo ? `data-sub="${esc(subTitulo)}"` : ""}
-      aria-label="${esc(label)}"
-      title="${esc(label)}">${iconPlus}</button>
+    <span class="item__nome">${esc(n)}</span><span class="item__pontos"></span><span class="item__preco">${reais(p)}</span>
+    <button class="item__add${temOpcoes ? " item__add--opcoes" : ""}" type="button"
+      data-cat="${cat.id}" data-item="${esc(n)}" ${subTitulo ? `data-sub="${esc(subTitulo)}"` : ""}
+      aria-label="${esc(label)}" title="${esc(label)}">${iconPlus}</button>
     ${d ? `<span class="item__desc">${esc(d)}</span>` : ""}
   </div>`;
 }
 
 function renderCardapio() {
-  const termo = semAcento(busca.value.trim());
-  let html = "";
+  const termo = semAcento(busca.value.trim()); let html = "";
   CARDAPIO.forEach(c => {
     if (!termo && categoria !== "todos" && categoria !== c.id) return;
     const grupos = c.sub ? c.sub.map(([t, its]) => [t, its]) : [[null, c.itens]];
     let corpo = "";
     grupos.forEach(([t, its]) => {
       const f = its.filter(i => !termo || semAcento(i[0] + " " + (i[2] || "") + " " + c.titulo).includes(termo));
-      if (f.length) {
-        corpo += (t ? `<p class="grupo__nota"><b>${t}</b></p>` : "") + f.map(i => linha(c, i, t)).join("");
-      }
+      if (f.length) corpo += (t ? `<p class="grupo__nota"><b>${t}</b></p>` : "") + f.map(i => linha(c, i, t)).join("");
     });
     if (corpo) html += `<section class="grupo"><h3>${c.titulo}</h3>${c.nota ? `<p class="grupo__nota">${c.nota}</p>` : ""}${corpo}</section>`;
   });
@@ -406,27 +327,17 @@ function renderCardapio() {
 
 abas.addEventListener("click", e => {
   const b = e.target.closest(".aba"); if (!b) return;
-  categoria = b.dataset.id; busca.value = "";
-  $$(".aba").forEach(a => a.setAttribute("aria-selected", a === b));
-  renderCardapio();
+  categoria = b.dataset.id; busca.value = ""; $$(".aba").forEach(a => a.setAttribute("aria-selected", a === b)); renderCardapio();
 });
-busca.addEventListener("input", renderCardapio);
-renderCardapio();
+busca.addEventListener("input", renderCardapio); renderCardapio();
 
-/* Clique no "+" do item → abre modal (se tem opções) ou adiciona direto */
 lista.addEventListener("click", e => {
-  const btn = e.target.closest(".item__add");
-  if (!btn) return;
+  const btn = e.target.closest(".item__add"); if (!btn) return;
   const { cat: catId, item: itemName, sub: subName } = btn.dataset;
-  const cat = CARDAPIO.find(c => c.id === catId);
-  if (!cat) return;
+  const cat = CARDAPIO.find(c => c.id === catId); if (!cat) return;
   let item = null;
-  if (subName) {
-    const sub = (cat.sub || []).find(([t]) => t === subName);
-    if (sub) item = sub[1].find(i => i[0] === itemName);
-  } else {
-    item = (cat.itens || []).find(i => i[0] === itemName);
-  }
+  if (subName) { const sub = (cat.sub || []).find(([t]) => t === subName); if (sub) item = sub[1].find(i => i[0] === itemName); }
+  else { item = (cat.itens || []).find(i => i[0] === itemName); }
   if (item) adicionarItemCardapio(cat, item);
 });
 
@@ -436,72 +347,39 @@ function adicionarItemCardapio(cat, item) {
   const hasCatFlavors = !hasItemFlavors && cat.saboresBase && cat.saboresBase.length;
 
   if (hasItemFlavors) {
-    abrirModalOpcoes({
-      titulo: "Escolha o sabor",
-      subtitle: `${nome} — ${reais(preco)}`,
-      opcoes: sabores.map(s => ({ label: s })),
-      onEscolher: opt => addToCart({ key: `card-${cat.id}-${nome}-${opt.label}`, nome, variacao: opt.label, preco })
-    });
+    abrirModalOpcoes({ titulo: "Escolha o sabor", subtitle: `${nome} — ${reais(preco)}`, opcoes: sabores.map(s => ({ label: s })),
+      onEscolher: opt => addToCart({ key: `card-${cat.id}-${nome}-${opt.label}`, nome, variacao: opt.label, preco }) });
     return;
   }
-
   if (hasCatFlavors) {
     const prefixo = cat.prefixoNome || "";
-    abrirModalOpcoes({
-      titulo: "Escolha o sabor",
-      subtitle: `${prefixo ? prefixo + " · " : ""}${nome} — ${reais(preco)}`,
-      opcoes: cat.saboresBase.map(s => ({ label: s })),
-      onEscolher: opt => addToCart({
-        key: `card-${cat.id}-${nome}-${opt.label}`,
-        nome: prefixo ? `${prefixo} de ${opt.label}` : `${nome} - ${opt.label}`,
-        variacao: nome,
-        preco
-      })
-    });
+    abrirModalOpcoes({ titulo: "Escolha o sabor", subtitle: `${prefixo ? prefixo + " · " : ""}${nome} — ${reais(preco)}`, opcoes: cat.saboresBase.map(s => ({ label: s })),
+      onEscolher: opt => addToCart({ key: `card-${cat.id}-${nome}-${opt.label}`, nome: prefixo ? `${prefixo} de ${opt.label}` : `${nome} - ${opt.label}`, variacao: nome, preco }) });
     return;
   }
-
   addToCart({ key: `card-${cat.id}-${nome}`, nome, preco });
 }
 
-/* ============================================================
-   LIGHTBOX DA TABELA
-   ============================================================ */
-const lb = $("#lightbox"), lbImg = $("#lightbox-img");
-let ultimoFoco = null;
+/* ============================================================ LIGHTBOX DA TABELA ============================================================ */
+const lb = $("#lightbox"), lbImg = $("#lightbox-img"); let ultimoFoco = null;
 
-function abrirLb(el) {
-  ultimoFoco = el || document.activeElement;
-  lb.hidden = false;
-  document.body.style.overflow = "hidden";
-  $("#fechar-tabela").focus();
-}
-function fecharLb() {
-  lb.hidden = true;
-  document.body.style.overflow = "";
-  if (ultimoFoco) ultimoFoco.focus();
-}
+function abrirLb(el) { ultimoFoco = el || document.activeElement; lb.hidden = false; document.body.style.overflow = "hidden"; $("#fechar-tabela").focus(); }
+function fecharLb() { lb.hidden = true; document.body.style.overflow = ""; if (ultimoFoco) ultimoFoco.focus(); }
 $$("[data-abrir-tabela]").forEach(b => b.addEventListener("click", () => abrirLb(b)));
 $("#fechar-tabela").addEventListener("click", fecharLb);
 lbImg.addEventListener("click", () => lbImg.classList.toggle("zoom"));
 lb.addEventListener("click", e => { if (e.target === lb) fecharLb(); });
 addEventListener("keydown", e => { if (e.key === "Escape" && !lb.hidden) fecharLb(); });
 
-/* ============================================================
-   PRATOS PARA COMPARTILHAR
-   ============================================================ */
+/* ============================================================ PRATOS PARA COMPARTILHAR ============================================================ */
 $("#pratos-lista").innerHTML = PRATOS.map((p, pi) => `
   <article class="prato">
-    <h3>${esc(p.nome)}</h3>
+    <h3>${esc(p.nome)}${p.badge ? `<span class="prato__badge">${esc(p.badge)}</span>` : ""}</h3>
     <p class="prato__inclui">${esc(p.inclui)}</p>
     <div class="precos">
       ${p.precos.map(([q, v], si) => `
-        <button class="preco-linha preco-linha--add" type="button"
-          data-prato="${pi}" data-size="${si}"
-          aria-label="Adicionar ${esc(p.nome)} para ${esc(q)} — ${reais(v)}">
-          <span>Para ${esc(q)}</span>
-          <b>${reais(v)}</b>
-          <span class="preco-linha__add" aria-hidden="true">${iconPlus}</span>
+        <button class="preco-linha preco-linha--add" type="button" data-prato="${pi}" data-size="${si}" aria-label="Adicionar ${esc(p.nome)} para ${esc(q)} — ${reais(v)}">
+          <span>Para ${esc(q)}</span><b>${reais(v)}</b><span class="preco-linha__add" aria-hidden="true">${iconPlus}</span>
         </button>
       `).join("")}
     </div>
@@ -509,55 +387,30 @@ $("#pratos-lista").innerHTML = PRATOS.map((p, pi) => `
 `).join("");
 
 $("#pratos-lista").addEventListener("click", e => {
-  const btn = e.target.closest("[data-prato]");
-  if (!btn) return;
-  const prato = PRATOS[+btn.dataset.prato];
-  const [tamanho, preco] = prato.precos[+btn.dataset.size];
+  const btn = e.target.closest("[data-prato]"); if (!btn) return;
+  const prato = PRATOS[+btn.dataset.prato]; const [tamanho, preco] = prato.precos[+btn.dataset.size];
   addToCart({ key: `prato-${btn.dataset.prato}-${btn.dataset.size}`, nome: prato.nome, variacao: tamanho, preco });
 });
 
-/* ============================================================
-   TOAST
-   ============================================================ */
+/* ============================================================ TOAST ============================================================ */
 let toastTimer = null;
 function showToast(msg) {
-  const t = $("#toast");
-  if (!t) return;
-  t.textContent = msg;
-  t.hidden = false;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { t.hidden = true; }, 2200);
+  const t = $("#toast"); if (!t) return;
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 2200);
 }
 
-/* ============================================================
-   AVALIAÇÕES
-   ============================================================ */
+/* ============================================================ AVALIAÇÕES ============================================================ */
 const CORES = ["#2F6B2F", "#D62828", "#D9861A", "#1E4A1E", "#7a4a1a", "#3b6a8a"];
 const estrelas = n => "★".repeat(Math.round(n)) + "☆".repeat(5 - Math.round(n));
 
 async function carregarAvaliacoes() {
   let dados = null;
-  if (REVIEWS_API_URL) {
-    try {
-      const r = await fetch(REVIEWS_API_URL);
-      if (r.ok) dados = await r.json();
-    } catch (e) { console.warn("API de avaliações indisponível, usando reviews.json", e); }
-  }
-  if (!dados) {
-    try {
-      const r = await fetch("assets/reviews.json");
-      const j = await r.json();
-      dados = Array.isArray(j) ? { avaliacoes: j } : j;
-    } catch (e) { console.warn("Não foi possível ler reviews.json", e); dados = { avaliacoes: [] }; }
-  }
-  const av = dados.avaliacoes || [];
-  const faixa = $("#aval-faixa");
-  if (!av.length) {
-    $("#carrossel").hidden = true;
-    $("#aval-media").textContent = "★";
-    $("#aval-total").textContent = "Veja as avaliações no Google Maps";
-    return;
-  }
+  if (REVIEWS_API_URL) { try { const r = await fetch(REVIEWS_API_URL); if (r.ok) dados = await r.json(); } catch (e) { console.warn("API indisponível", e); } }
+  if (!dados) { try { const r = await fetch("assets/reviews.json"); const j = await r.json(); dados = Array.isArray(j) ? { avaliacoes: j } : j; } catch (e) { console.warn("Erro reviews.json", e); dados = { avaliacoes: [] }; } }
+  
+  const av = dados.avaliacoes || []; const faixa = $("#aval-faixa");
+  if (!av.length) { $("#carrossel").hidden = true; $("#aval-media").textContent = "★"; $("#aval-total").textContent = "Veja as avaliações no Google Maps"; return; }
 
   const media = dados.nota || av.reduce((s, a) => s + a.nota, 0) / av.length;
   $("#aval-media").textContent = media.toFixed(1).replace(".", ",");
@@ -587,10 +440,5 @@ async function carregarAvaliacoes() {
   }
 }
 
-/* ============================================================
-   INIT
-   ============================================================ */
-loadCart();
-renderCart();
-atualizarBotaoCarrinho();
-carregarAvaliacoes();
+/* ============================================================ INIT ============================================================ */
+loadCart(); renderCart(); atualizarBotaoCarrinho(); carregarAvaliacoes();

@@ -176,7 +176,8 @@ p{margin:0 0 1em;text-wrap:pretty}
 .pratos{display:grid;gap:clamp(1rem,2vw,1.6rem)}
 .prato{background:var(--creme);color:var(--carvao);border-radius:var(--raio);padding:1.6rem;display:flex;flex-direction:column;gap:.6rem;border-bottom:5px solid var(--laranja);box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .22s;min-width:0}
 .prato:hover{transform:translateY(-4px)}
-.prato h3{color:var(--verde-escuro);margin:0}
+.prato h3{color:var(--verde-escuro);margin:0;display:flex;align-items:center;flex-wrap:wrap;gap:.5rem}
+.prato__badge{display:inline-block;background:var(--laranja-escuro);color:#fff;font-size:.65rem;padding:.15rem .5rem;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;font-family:var(--f-texto);font-weight:800;line-height:1.2}
 .prato__inclui{font-size:.95rem;color:var(--marrom);margin:0;flex:1}
 .precos{display:grid;gap:.45rem;margin:.3rem 0}
 .preco-linha{
